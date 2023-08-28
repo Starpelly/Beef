@@ -89,6 +89,7 @@ IDE\dist\BeefBuild_d -proddir=BeefTools\BeefPerf -config=Release
 @EXIT /b 0
 
 :HADERROR
+pause
 @ECHO =================FAILED=================
 @POPD
 @EXIT /b %ERRORLEVEL%
