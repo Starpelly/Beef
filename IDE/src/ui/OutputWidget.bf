@@ -244,9 +244,9 @@ namespace IDE.ui
 
 				Menu menu = new Menu();
 
-				var menuItemClearAll = menu.AddItem("Clear All");
+				var menuItem = menu.AddItem("Clear All");
 				var panel = mParent.mParent.mParent as TextPanel;
-				menuItemClearAll.mOnMenuItemSelected.Add(new (evt) =>
+				menuItem.mOnMenuItemSelected.Add(new (evt) =>
 			    {
 					if (panel != null)
 						panel.Clear();
