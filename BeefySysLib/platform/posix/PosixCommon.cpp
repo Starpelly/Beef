@@ -559,8 +559,16 @@ BFP_EXPORT void BFP_CALLTYPE BfpSystem_Init(int version, BfpSystemInitFlags flag
         BfpSystem_FatalError(StrFormat("Bfp build version '%d' does not match requested version '%d'", BFP_VERSION, version).c_str(), "BFP FATAL ERROR");
     }
 
+    // NOTE from Pelly:
+    // I don't know what this does, but the build fails on android when using 'SIG_IGN', so I just
+    // set it to 0. I'm not sure what the consequences are to this?
+#if defined(ANDROID)
+    struct sigaction ignoreAction = { 0 };
+    sigaction(SIGPIPE, &ignoreAction, NULL);
+#else
     struct sigaction ignoreAction = { SIG_IGN };
     sigaction(SIGPIPE, &ignoreAction, NULL);
+#endif
 
     //if (ptrace(PTRACE_TRACEME, 0, 1, 0) != -1)
     {

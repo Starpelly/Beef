@@ -21,10 +21,14 @@ extern "C"
 #ifdef BF_PLATFORM_WINDOWS
 #include <shellapi.h>
 #include <direct.h>
+
+// Note from Pelly:
+// Obviously, winmm is a Windows static library, and it won't work on Android.
+// No idea what the consequences are for moving this into here, but it won't compile if I don't.
+#pragma comment(lib, "winmm.lib")
 #endif
 
 #pragma warning(disable:4996)
-#pragma comment(lib, "winmm.lib")
 
 int gBFArgC;
 char** gBFArgV;
